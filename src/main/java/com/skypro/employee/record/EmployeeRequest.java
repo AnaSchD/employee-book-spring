@@ -1,5 +1,7 @@
 package com.skypro.employee.record;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class EmployeeRequest {
 
     private String firstName;
@@ -11,16 +13,18 @@ public class EmployeeRequest {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public String setFirstName(String firstName) {
         this.firstName = firstName;
+        return firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public String setLastName(String lastName) {
         this.lastName = lastName;
+        return lastName;
     }
 
     public int getDepartment() {
