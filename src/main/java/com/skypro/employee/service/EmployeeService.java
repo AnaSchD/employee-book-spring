@@ -34,5 +34,26 @@ public class EmployeeService {
         return employees.values().stream().mapToInt(e -> e.getSALARY()).sum();
     }
 
+    public int getAverageSalary() {
+        return (int) employees.values().stream().mapToInt(Employee::getSALARY).average().orElseThrow();
+    }
+
+    public int getMinSalary() {
+        return employees.values().stream().mapToInt(Employee::getSALARY).min().orElseThrow();
+    }
+
+    public int getMaxSalary() {
+        return employees.values().stream().mapToInt(Employee::getSALARY).max().orElseThrow();
+    }
+
+    public Employee getHighSalary(EmployeeRequest employeeRequest) {
+        Employee employee = new Employee(employeeRequest.getFirstName(), employeeRequest.getLastName(),
+                employeeRequest.getDepartment(), employeeRequest.getSalary());
+        if (employeeRequest.getSalary() > getAverageSalary()) {
+            this.employees.put(employee.getSALARY(), employee);
+        }
+        return employee;
+    }
+
 
 }
