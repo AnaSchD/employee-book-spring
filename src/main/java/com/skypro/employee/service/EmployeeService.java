@@ -1,5 +1,6 @@
 package com.skypro.employee.service;
 
+import com.skypro.employee.exception.EmployeeValidationException;
 import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,7 @@ public class EmployeeService {
         return this.employees.values();
     }
 
-    public Employee addEmployee(EmployeeRequest employeeRequest) {
+    public Employee addEmployee(EmployeeRequest employeeRequest) throws EmployeeValidationException {
         checkEmployee(employeeRequest);
         Employee employee = new Employee(
                 employeeRequest.setFirstName(StringUtils.capitalize(employeeRequest.getFirstName())),
@@ -64,13 +65,13 @@ public class EmployeeService {
         return employee;
     }
 
-    public void checkEmployee(EmployeeRequest employeeRequest) {
+    public void checkEmployee(EmployeeRequest employeeRequest) throws EmployeeValidationException {
         boolean firstName = StringUtils.isEmpty(employeeRequest.getFirstName());
         boolean lastName = StringUtils.isEmpty(employeeRequest.getLastName());
         boolean firstNameFirstSymbol = StringUtils.isAlpha(employeeRequest.getFirstName());
         boolean lastNameFirstSymbol = StringUtils.isAlpha(employeeRequest.getLastName());
         if (firstName || lastName || !firstNameFirstSymbol || !lastNameFirstSymbol) {
-            throw new IllegalArgumentException("Введите верно ФИО");
+            throw new EmployeeValidationException("Ошибка валидации, некорректные ФИО");
         }
     }
 
