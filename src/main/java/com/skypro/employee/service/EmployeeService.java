@@ -29,14 +29,6 @@ public class EmployeeService {
                 employeeRequest.getSalary());
         this.employees.put(employee.getID(), employee);
         return employee;
-
-//                employeeRequest.getFirstName(),
-//                employeeRequest.getLastName(),
-//                employeeRequest.getDepartment(),
-//                employeeRequest.getSalary());
-//        if (employeeRequest.getLastName() == null || employeeRequest.getFirstName() == null) {
-//                throw new IllegalArgumentException("Установите ФИО сотрудника");
-
     }
 
 
